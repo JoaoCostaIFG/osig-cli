@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "osig_cli"
+version = "0.0.1"
+authors = [
+  { name="JoaoCostaIFG", email="joaocosta.work@posteo.net" },
+]
+description = "Generate open-graph images from your terminal."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+  "pillow==11.0.0",
+  "requests==2.32.3",
+]
+
+[project.urls]
+Homepage = "https://github.com/JoaoCostaIFG/osig-cli"
+Issues = "https://github.com/JoaoCostaIFG/osig-cli/issues"
+
+[project.scripts]
+osig_cli = "osig_cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/osig_cli"]

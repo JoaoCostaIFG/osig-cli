@@ -1,5 +1,5 @@
 import io
-import os
+import importlib
 
 import logging
 import requests
@@ -71,8 +71,10 @@ def draw_wrapped_text(
 
 def load_font(font, size):
     try:
-        font_path = os.path.join("fonts", f"{font}.ttc")
-        return ImageFont.truetype(font_path, size)
+        with importlib.resources.path(
+            "osig_cli.resources.fonts", f"{font}.ttc"
+        ) as font_path:
+            return ImageFont.truetype(font_path, size)
     except Exception as e:
         logger.error("Error loading font: [font=%s], [error=%s]", font, str(e))
         return ImageFont.load_default().font_variant(size=size)
